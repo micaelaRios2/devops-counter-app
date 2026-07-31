@@ -1,8 +1,13 @@
-version: '3.8'
 services:
   redis-server:
     image: 'redis:alpine'
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
   node-app:
     build: .
     ports:
       - '8080:8080'
+
+volumes:
+  redis-data:
